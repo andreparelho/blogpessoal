@@ -23,7 +23,6 @@ public class Postagem {
     private String texto;
 
     @UpdateTimestamp
-    @NotBlank
     private LocalDateTime data;
 
     public long getId() {
