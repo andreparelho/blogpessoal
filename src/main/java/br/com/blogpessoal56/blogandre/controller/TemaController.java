@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/descricao")
+@RequestMapping("/temas")
 @CrossOrigin (origins = "*", allowedHeaders = "*")
 public class TemaController {
 
@@ -32,7 +32,7 @@ public class TemaController {
         return temaRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    @GetMapping("/tema/{tema}")
+    @GetMapping("/descricao/{descricao}")
     public ResponseEntity<List<Tema>> getByTema(@PathVariable String tema) {
         return ResponseEntity.ok(temaRepository.findAllByDescricaoContainingIgnoreCase(tema));
     }
@@ -44,8 +44,8 @@ public class TemaController {
 
     @PutMapping
     public ResponseEntity<Tema> put(@Valid @RequestBody Tema tema) {
-        return temaRepository.findById(tema.getId()).map(resposta -> ResponseEntity.status(HttpStatus.OK).body(temaRepository.save(tema)))
-                .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+        return temaRepository.findById(tema.getId()).map(resposta -> ResponseEntity.status(HttpStatus.OK).
+                        body(temaRepository.save(tema))).orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
