@@ -37,7 +37,6 @@ public class Usuario {
     private List<Postagem> postagem;
 
 
-
     public long getId() {
         return id;
     }
