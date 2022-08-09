@@ -23,6 +23,10 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
 		<dependency>
@@ -51,8 +55,9 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>br.com.blogpessoal56</groupId>
+				<artifactId>blogpessoal56</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
 			</plugin>
 		</plugins>
 	</build>
