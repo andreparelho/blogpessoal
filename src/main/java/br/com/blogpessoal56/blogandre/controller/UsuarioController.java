@@ -3,7 +3,7 @@ package br.com.blogpessoal56.blogandre.controller;
 import br.com.blogpessoal56.blogandre.model.Usuario;
 import br.com.blogpessoal56.blogandre.model.UsuarioLogin;
 import br.com.blogpessoal56.blogandre.repository.UsuarioRepository;
-import br.com.blogpessoal56.service.UsuarioService;
+import br.com.blogpessoal56.blogandre.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import java.util.Optional;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
     @Autowired
-    private UsuarioService service;
+    private UsuarioService usuarioService;
     @Autowired
     private UsuarioRepository repository;
 
@@ -37,15 +37,15 @@ public class UsuarioController {
     @PostMapping("/logar")
     public ResponseEntity<UsuarioLogin> autenticationUsuario(
             @RequestBody Optional<UsuarioLogin> usuario) {
-        return service.logarUsuario(usuario)
-                .map(ResponseEntity::ok)
+        return usuarioService.logarUsuario(usuario)
+                .map(resp -> ResponseEntity.ok(resp))
                 .orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
     }
 
     @PostMapping("/cadastrar")
     public ResponseEntity<Usuario> postUsuario(
             @Valid @RequestBody Usuario usuario) {
-        return service.cadastrarUsuario(usuario)
+        return usuarioService.cadastrarUsuario(usuario)
                 .map(resp -> ResponseEntity.status(HttpStatus.CREATED).body(resp))
                 .orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
     }
@@ -53,7 +53,7 @@ public class UsuarioController {
     @PutMapping("/atualizar")
     public ResponseEntity<Usuario> putUsuario(
             @Valid @RequestBody Usuario usuario) {
-        return service.atualizarUsuario(usuario)
+        return usuarioService.atualizarUsuario(usuario)
                 .map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
                 .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
