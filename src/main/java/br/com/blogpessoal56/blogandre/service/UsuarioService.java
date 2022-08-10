@@ -1,4 +1,4 @@
-package br.com.blogpessoal56.service;
+package br.com.blogpessoal56.blogandre.service;
 
 import br.com.blogpessoal56.blogandre.model.Usuario;
 import br.com.blogpessoal56.blogandre.model.UsuarioLogin;
@@ -83,4 +83,3 @@ public class UsuarioService {
         return "Basic " + new String(estruturaBase64);
     }
 }
-
