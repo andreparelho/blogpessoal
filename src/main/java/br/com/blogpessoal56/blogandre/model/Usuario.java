@@ -14,6 +14,17 @@ import java.util.List;
 @Table(name = "tb_usuarios")
 public class Usuario {
 
+    public Usuario(long id, String nome, String usuario, String senha, String foto) {
+        this.id = id;
+        this.nome = nome;
+        this.usuario = usuario;
+        this.senha = senha;
+        this.foto = foto;
+    }
+
+    public Usuario() {
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -35,7 +46,6 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.REMOVE)
     @JsonIgnoreProperties("usuario")
     private List<Postagem> postagem;
-
 
     public long getId() {
         return id;
